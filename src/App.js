@@ -1,41 +1,24 @@
-import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import LoginPage from "./components/LoginPage";
+import DashboardAdmin from "./components/DashboardAdmin";
+import DashboardCustomer from "./components/DashboardCustomer";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import PostLogin from "./components/PostLogin";
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <div className="container-fluid App">
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/admin/dashboard" element={<DashboardAdmin />} />
+        <Route path="/customer/dashboard" element={<DashboardCustomer />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/post-login" element={<PostLogin />} />
+        <Route path="/logout" element={<Logout />} />
+      </Routes>
+    </div>
   );
 }
 
