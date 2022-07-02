@@ -27,7 +27,6 @@ const LoginPage = () => {
       setIsAuthenticated(true);
       console.log(res.data);
       userRole = res.data.role;
-      console.log(userRole);
     } catch (error) {
       console.log(error);
     }
@@ -42,50 +41,53 @@ const LoginPage = () => {
     }
   }
     return (
-        <section className="vh-100">
-        <div className="container-fluid h-custom">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-md-12 col-lg-6 col-xl-4 offset-xl-1">
-            <h2>Hansa Design Ticket System</h2>
-              <form onSubmit={handleSubmit}>
-                <div className="divider d-flex align-items-center my-4">
-                  <p className="text-center fw-bold mx-3 mb-0"></p>
-                </div>
-      
-                {/* Email Input */}
-                <div className="form-outline mb-4">
-                  <input type="email" id="email" name="email" className="form-control form-control-lg"
-                    placeholder="Enter a valid email address" autoComplete="on" />
-                  <label className="form-label">Email address</label>
-                </div>
-      
-                {/* Password Input */}
-                <div className="form-outline mb-3">
-                  <input type="password" id="inputPassword" name="password" className="form-control form-control-lg"
-                    placeholder="Enter password" autoComplete="on" />
-                  <label className="form-label">Password</label>
-                </div>
-      
-                <div className="d-flex justify-content-between align-items-center">
-                  {/* Checkbox */}
-                  <div className="form-check mb-0">
-                    <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                    <label className="form-check-label">
-                      Remember me
-                    </label>
+        
+          <section>
+          <div className="page-header min-vh-75">
+            <div className="container">
+              <div className="row">
+                <div className="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+                  <div className="card card-plain mt-8">
+                    <div className="card-header pb-0 text-left bg-transparent">
+                      <h3 className="font-weight-bolder text-info text-gradient">Welcome back</h3>
+                      <p className="mb-0">Enter your email and password to sign in</p>
+                    </div>
+                    <div className="card-body">
+                      <form onSubmit={handleSubmit}>
+                        <label>Email</label>
+                        <div className="mb-3">
+                          <input type="email" id="email" name="email" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" />
+                        </div>
+                        <label>Password</label>
+                        <div className="mb-3">
+                          <input type="password" id="inputPassword" name="password" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" />
+                        </div>
+                        <div className="form-check form-switch">
+                          <input className="form-check-input" type="checkbox" id="rememberMe" checked="" />
+                          <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
+                        </div>
+                        <div className="text-center">
+                          <button type="submit" className="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
+                        </div>
+                      </form>
+                    </div>
+                    <div className="card-footer text-center pt-0 px-lg-2 px-1">
+                      <p className="mb-4 text-sm mx-auto">
+                        Don't have an account?
+                        
+                      </p>
+                    </div>
                   </div>
-                  <a href="#!" className="text-body">Forgot password?</a>
                 </div>
-      
-                <div className="text-center text-lg-start mt-4 pt-2">
-                  <button type="submit" className="btn btn-primary btn-lg">Login</button>
+                <div className="col-md-6">
+                  <div className="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+                    <div className="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6"></div>
+                  </div>
                 </div>
-      
-              </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
     );
   };
   

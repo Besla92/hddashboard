@@ -23,11 +23,14 @@ const [isAuthenticated, setIsAuthenticated] = useState(null);
           if (res.status === 200) {
             setIsAuthenticated(true);
           }
+          console.log('Token exist');
         } catch (error) {
           console.log(error);
+          console.log('Error');
         }
       } else {
         setIsAuthenticated(false);
+        console.log('Token not exist');
       }
     };
     checkIfTokenValid();
