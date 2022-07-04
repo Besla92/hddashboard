@@ -8,6 +8,11 @@ const LoginPage = () => {
     const { isAuthenticated, setIsAuthenticated } =
     useContext(AuthContext);
     let userRole;
+    let fetchData;
+  const handleOnChange = async (e) => {
+    e.preventDefault();
+
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = e.target;
@@ -15,7 +20,6 @@ const LoginPage = () => {
       email: email.value,
       password: password.value,
     };
-
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/user/login`,
@@ -25,8 +29,9 @@ const LoginPage = () => {
       //token im localStorage speichern
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
-      console.log(res.data);
+      fetchData = res.data.user.rows[0];
       userRole = res.data.role;
+      console.log(fetchData)
     } catch (error) {
       console.log(error);
     }
@@ -56,15 +61,17 @@ const LoginPage = () => {
                       <form onSubmit={handleSubmit}>
                         <label>Email</label>
                         <div className="mb-3">
-                          <input type="email" id="email" name="email" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" />
+                          <input type="email" id="email" name="email" className="form-control" placeholder="Email" 
+                          aria-label="Email" aria-describedby="email-addon" autoComplete="on"/>
                         </div>
                         <label>Password</label>
                         <div className="mb-3">
-                          <input type="password" id="inputPassword" name="password" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" />
+                          <input type="password" id="inputPassword" name="password" className="form-control" placeholder="Password" 
+                          aria-label="Password" aria-describedby="password-addon" autoComplete="on"/>
                         </div>
                         <div className="form-check form-switch">
-                          <input className="form-check-input" type="checkbox" id="rememberMe" checked="" />
-                          <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
+                          <input className="form-check-input" type="checkbox" id="rememberMe" checked="" onChange={handleOnChange}/>
+                          <label className="form-check-label" htmlFor="rememberMe" >Remember me</label>
                         </div>
                         <div className="text-center">
                           <button type="submit" className="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
-import '../Dashboard.css';
 
 const DashboardCustomer = () => {
   const { isAuthenticated } = useContext(AuthContext);

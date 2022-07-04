@@ -18,7 +18,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(null);
         try {
           const res = await axios.get(
             `${process.env.REACT_APP_API_URL}/api/user/verify`,
-            { headers: { token: token } }
+            { headers: { Authorization: token } }
           );
           if (res.status === 200) {
             setIsAuthenticated(true);
@@ -26,7 +26,6 @@ const [isAuthenticated, setIsAuthenticated] = useState(null);
           console.log('Token exist');
         } catch (error) {
           console.log(error);
-          console.log('Error');
         }
       } else {
         setIsAuthenticated(false);
