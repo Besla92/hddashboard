@@ -14,3 +14,18 @@ height: 100%;
 }
 }
 
+.form-check {
+    margin-left: 30px;
+}
+
+.page-header    {
+    margin-top: 15% !important;
+}
+
+.inputForm  {
+    padding-bottom: 30px;
+}
+
+.create-user-button {
+    color:green;
+}
