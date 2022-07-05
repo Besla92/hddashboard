@@ -29,14 +29,11 @@ const LoginPage = () => {
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
       //fetchData = res.data.user.rows[0];
-<<<<<<< HEAD
       setUserData(res.data.user.rows[0]);
       userRole = userData.role;
       console.log(userData);
-=======
       localStorage.setItem("role", res.data.user.rows[0].role);
       
->>>>>>> 1a0f7e39fdcc07966cea0163d8a532f91a1db250
     } catch (error) {
       console.log({error: error.message});
     }
