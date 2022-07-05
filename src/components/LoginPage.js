@@ -1,15 +1,11 @@
 import axios from "axios";
-import { createContext, useContext, useState, useEffect } from "react";
+import {  useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const LoginPage = () => {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    const { userRole, setUserRole } = useState(null);
-  const handleOnChange = async (e) => {
-    e.preventDefault();
-
-  }
+    let role
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = e.target;
@@ -27,21 +23,20 @@ const LoginPage = () => {
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
       //fetchData = res.data.user.rows[0];
-
-      setUserRole(res.data.user.rows[0].role);
+      localStorage.setItem("role", res.data.user.rows[0].role);
+      
     } catch (error) {
-      console.log(error);
+      console.log({error: error.message});
     }
   };
-  
+
+  role = localStorage.getItem("role");
   if (isAuthenticated) {
-    console.log(`userRole: ${userRole}`);
-    if(userRole === "customer")    {
-      console.log('admin');
+    console.log(`userRole: ${role}`);
+    if(role === "user")    {
         return <Navigate to="../customer/dashboard" />;
     }
     else    {
-      console.log('customer');
         return <Navigate to="../admin/dashboard" />;
     }
   }
