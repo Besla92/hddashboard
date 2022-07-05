@@ -22,19 +22,25 @@ export const Sidebar = () => {
             <i className="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></Link>
     </li> 
+    <hr className="sidebar-divider" />
     <li className="nav-item has-submenu">
-        <Link className="nav-link collapsed" to="#" data-toggle="collapse" data-target="#collapseTwo"
+        <Link className="nav-link" to="#"  data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <span>Users</span>
+            <h6>Users</h6>
         </Link>
-        
-        <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div className="bg-white py-2 collapse-inner rounded">
-                <Link className="collapse-item" to="/admin/dashboard/users">All users</Link>
-                <Link className="collapse-item" to="/admin/dashboard/addnewuser">Add new user</Link>
-            </div>
-        </div>
+    </li>    
+    <li className="nav-item has-submenu">
+    <Link className="nav-link" to="/admin/dashboard/users">
+            <i className="fas fa-fw fa-tachometer-alt"></i>
+            <span>All users</span></Link>
     </li>
+    <li className="nav-item has-submenu">
+    <Link className="nav-link" to="/admin/dashboard/addnewuser">
+            <i className="fas fa-fw fa-tachometer-alt"></i>
+            <span>Add new user</span></Link>
+    </li>
+       
+    
     <hr className="sidebar-divider" />
     <li className="nav-item active">
         <Link className="nav-link" to="/admin/dashboard/ticketsystem">

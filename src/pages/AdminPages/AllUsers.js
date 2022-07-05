@@ -1,13 +1,28 @@
-import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Navigate } from "react-router-dom";
 import { Sidebar } from "./Sidebar";
 import { NavBar } from "../../components/NavBar";
+import { useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 
 const AllUsers = () => {
-  const { isAuthenticated } = useContext(AuthContext);
-
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const [results, setResults] = useState(); 
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/admin/alltickets/subject/asc`,  { headers: { token: token } })
+      .then((response) => {
+        console.log(response.data);
+      setResults(response.data.rows);
+      console.log(response);
+      if (response.data === 0)  {
+        console.log("no results");
+      }      
+      })
+      .catch((error) => console.log({error: error.message}));
+    },[]);
   
 
   return (

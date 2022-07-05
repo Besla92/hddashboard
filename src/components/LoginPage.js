@@ -1,11 +1,11 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const LoginPage = () => {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    let userRole;
+    const { userRole, setUserRole } = useState(null);
   const handleOnChange = async (e) => {
     e.preventDefault();
 
@@ -27,19 +27,22 @@ const LoginPage = () => {
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
       //fetchData = res.data.user.rows[0];
-      console.log(`logintoken ${token}`)
-      userRole = res.data.role;
+
+      setUserRole(res.data.user.rows[0].role);
     } catch (error) {
       console.log(error);
     }
   };
   
   if (isAuthenticated) {
-    if(userRole !== "admin")    {
-        return <Navigate to="../admin/dashboard" />;
+    console.log(`userRole: ${userRole}`);
+    if(userRole === "customer")    {
+      console.log('admin');
+        return <Navigate to="../customer/dashboard" />;
     }
     else    {
-        return <Navigate to="../customer/dashboard" />;
+      console.log('customer');
+        return <Navigate to="../admin/dashboard" />;
     }
   }
     return (

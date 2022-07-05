@@ -29,3 +29,35 @@ height: 100%;
 .create-user-button {
     color:green;
 }
+
+.ticketsystem-row   {
+    margin: 20px;
+}
+
+.ticket-system-button   {
+    width: 100%;
+}
+
+.open  {
+    border: 1px solid green;
+    border-radius: 50px;
+    background: green;
+    color: white;
+    padding: 4px;
+}
+
+.closed  {
+    border: 1px solid red;
+    border-radius: 50px;
+    background: red;
+    color: white;
+    padding: 4px;
+}
+
+.pending  {
+    border: 1px solid yellow;
+    border-radius: 50px;
+    background: yellow;
+    color: white;
+    padding: 4px;
+}
