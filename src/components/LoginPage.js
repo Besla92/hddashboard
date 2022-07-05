@@ -1,14 +1,11 @@
 import axios from "axios";
-import { useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const LoginPage = () => {
-
-    const { isAuthenticated, setIsAuthenticated } =
-    useContext(AuthContext);
+    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
     let userRole;
-    let fetchData;
   const handleOnChange = async (e) => {
     e.preventDefault();
 
@@ -29,9 +26,9 @@ const LoginPage = () => {
       //token im localStorage speichern
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
-      fetchData = res.data.user.rows[0];
+      //fetchData = res.data.user.rows[0];
+      console.log(`logintoken ${token}`)
       userRole = res.data.role;
-      console.log(fetchData)
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +51,7 @@ const LoginPage = () => {
                 <div className="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
                   <div className="card card-plain mt-8">
                     <div className="card-header pb-0 text-left bg-transparent">
-                      <h3 className="font-weight-bolder text-info text-gradient">Welcome back</h3>
+                      <h3 className="font-weight-bolder text-info text-gradient">MK ticket system</h3>
                       <p className="mb-0">Enter your email and password to sign in</p>
                     </div>
                     <div className="card-body">
@@ -70,11 +67,10 @@ const LoginPage = () => {
                           aria-label="Password" aria-describedby="password-addon" autoComplete="on"/>
                         </div>
                         <div className="form-check form-switch">
-                          <input className="form-check-input" type="checkbox" id="rememberMe" checked="" onChange={handleOnChange}/>
-                          <label className="form-check-label" htmlFor="rememberMe" >Remember me</label>
+                          
                         </div>
-                        <div className="text-center">
-                          <button type="submit" className="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
+                        <div className="text-left">
+                        <button type="submit" className="btn btn-success">Sign in</button>
                         </div>
                       </form>
                     </div>

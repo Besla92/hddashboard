@@ -6,12 +6,14 @@ import '../sb-admin-2.min.css';
 import { Sidebar } from "../pages/AdminPages/Sidebar";
 import { NavBar } from "./NavBar";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const DashboardAdmin = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <>
+    {isAuthenticated ? (
       <div id="wrapper">
          <Sidebar />
          <div id="content-wrapper" className="d-flex flex-column">
@@ -113,6 +115,12 @@ const DashboardAdmin = () => {
      </div>
 </div>
 </div>
+
+    ) : (
+        <>
+        <Navigate to="../" />
+        </>
+    )}
     </>
   );
 };
