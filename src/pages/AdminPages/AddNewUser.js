@@ -10,6 +10,7 @@ const AddNewUser = () => {
 
     const { isAuthenticated, setIsAuthenticated } =
     useContext(AuthContext);
+    const token = localStorage.getItem("token");
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { email, password, first_name, last_name, username, company_name, user_role } = e.target;
@@ -20,15 +21,16 @@ const AddNewUser = () => {
           last_name: last_name.value,
           username: username.value,
           company_name: company_name.value,
-          user_role: user_role.value,
+          role: user_role.value,
         };
+        console.log(loginData);
         try {
           const res = await axios.post(
             `${process.env.REACT_APP_API_URL}/api/admin/adduser`,
-            loginData
+            loginData, { headers: { token: token } }
           );
           setIsAuthenticated(true);
-          console.log(res.data);
+          console.log(res);
         } catch (error) {
           console.log(error);
         }
@@ -82,11 +84,11 @@ const AddNewUser = () => {
                                 <div className="col-sm-6 inputForm">
                                     <label>Company Name</label>
                                     <select className="form-control" id="company_name">
-                                        <option>Company 1</option>
-                                        <option>Company 2</option>
-                                        <option>Company 3</option>
-                                        <option>Company 4</option>
-                                        <option>Company 5</option>
+                                        <option value="WBS GmbHb">Company 1</option>
+                                        <option value="test GmbH">Company 2</option>
+                                        <option value="Coca Cola">Company 3</option>
+                                        <option value="">Company 4</option>
+                                        <option value="">Company 5</option>
                                         </select>
                                 </div>
                             </div>
@@ -94,8 +96,8 @@ const AddNewUser = () => {
                                 <div className="col-sm-6 inputForm">
                                     <label>User Role</label>
                                         <select className="form-control" id="user_role">
-                                        <option>Admin</option>
-                                        <option>User</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
                                         </select>
                                 </div>
                             </div>
