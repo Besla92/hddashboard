@@ -4,8 +4,9 @@ import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const LoginPage = () => {
+  let userRole;
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    const { userRole, setUserRole } = useState(null);
+    const { userData, setUserData } = useState(null);
   const handleOnChange = async (e) => {
     e.preventDefault();
 
@@ -27,8 +28,9 @@ const LoginPage = () => {
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
       //fetchData = res.data.user.rows[0];
-
-      setUserRole(res.data.user.rows[0].role);
+      setUserData(res.data.user.rows[0]);
+      userRole = userData.role;
+      console.log(userData);
     } catch (error) {
       console.log(error);
     }
