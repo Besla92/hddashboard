@@ -4,7 +4,7 @@ import { NavBar } from '../../components/NavBar';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
 import axios from 'axios';
-import { user } from 'pg/lib/defaults';
+
 
 const AddNewUser = () => {
 
