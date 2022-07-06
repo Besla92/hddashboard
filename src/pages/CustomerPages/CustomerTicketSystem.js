@@ -8,9 +8,10 @@ const CustomerTicketSystem = () => {
   //const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [results, setResults] = useState(); 
   const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user_id");
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/user/postlogin/20`,  { headers: { token: token } })
+      .get(`${process.env.REACT_APP_API_URL}/api/user/postlogin/${user}`,  { headers: { token: token } })
       .then((response) => {
       setResults(response.data.rows);
       console.log(response);
@@ -19,7 +20,7 @@ const CustomerTicketSystem = () => {
       }      
       })
       .catch((error) => console.log({error: error.message}));
-    },[token]);
+    },[token, user]);
     
   return (
     <div id="wrapper">

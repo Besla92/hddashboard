@@ -29,6 +29,8 @@ const LoginPage = () => {
       //userRole = userData.role;
       //console.log(userData);
       localStorage.setItem("role", res.data.user.rows[0].role);
+      localStorage.setItem("user_id", res.data.user.rows[0].user_id);
+      console.log(res);
       
     } catch (error) {
       console.log({error: error.message});

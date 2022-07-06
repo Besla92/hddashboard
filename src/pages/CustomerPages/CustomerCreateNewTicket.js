@@ -9,6 +9,7 @@ const CustomerCreateNewTicket = () => {
 
     const { setIsAuthenticated } = useContext(AuthContext);
     const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user_id");
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { category, subject, content} = e.target;
@@ -20,7 +21,7 @@ const CustomerCreateNewTicket = () => {
         console.log(loginData);
         try {
           const res = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/user/postlogin/2`,
+            `${process.env.REACT_APP_API_URL}/api/user/postlogin/${user}`,
             loginData, { headers: { token: token } }
           );
           setIsAuthenticated(true);
@@ -49,11 +50,11 @@ const CustomerCreateNewTicket = () => {
                                 <div className="col-sm-6 inputForm">
                                     <label>User Role</label>
                                         <select className="form-control" id="category">
-                                        <option value="support">Support</option>
-                                        <option value="maintenance">Maintenance</option>
-                                        <option value="hosting">Hosting</option>
-                                        <option value="website">Website</option>
-                                        <option value="login">Login</option>
+                                        <option value="Support">Support</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Hosting">Hosting</option>
+                                        <option value="Website">Website</option>
+                                        <option value="Login">Login</option>
                                         </select>
                                 </div>
                             </div>

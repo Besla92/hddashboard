@@ -11,6 +11,7 @@ export const NavBar = () => {
         setIsAuthenticated(false);
         localStorage.removeItem("token");
         localStorage.removeItem("role");
+        localStorage.removeItem("user_id");
         return <Navigate to="./" />
         };
     
