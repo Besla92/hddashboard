@@ -28,7 +28,6 @@ const TicketSystem = () => {
 
     //HandleSubmit für den Status Update
     const handleSubmit = async (e) => {
-      e.preventDefault();
       const { status, current_ticket_id } = e.target;
       
        const new_ticket_status_id = status.value;
@@ -41,10 +40,10 @@ const TicketSystem = () => {
           {"new_ticket_status_id": new_ticket_status_id}, { headers: { token: token } }
         );
         
-        return <Navigate to="./admin/dashboard/ticketsystem" />
       } catch (error) {
         console.log(error);
       }
+      return <Navigate to="./" />
     };
   }
 //HandleSubmit für den Status Update
@@ -95,7 +94,7 @@ const TicketSystem = () => {
                 </div>
                 </div>
                 <div className="col-sm-2">
-                {"<--! Hier fängt der Modal an"}
+                {/* Hier fängt der Modal an */}
                 <button type="button" className="btn btn-success btn-sm" data-toggle="modal" data-target={`#myModal${result.ticket_id}`}>Edit</button>
                   <div className="modal" id={`myModal${result.ticket_id}`}>
                       <div className="modal-dialog">
@@ -126,7 +125,7 @@ const TicketSystem = () => {
                         </div>
                       </div>
                     </div>
-                    {"<--! Hier hört der Modal auf"}
+                    {/* Hier hört der Modal auf */}
                 <button type="submit" className="btn btn-danger btn-sm">Delete</button>
                 </div>
                 </div>
