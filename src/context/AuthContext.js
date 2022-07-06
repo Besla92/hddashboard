@@ -33,7 +33,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(null);
       console.log(isAuthenticated);
     };
     checkIfTokenValid();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider

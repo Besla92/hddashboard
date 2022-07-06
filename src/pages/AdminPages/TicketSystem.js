@@ -1,13 +1,13 @@
 import React from 'react';
 import { Sidebar } from './Sidebar';
 import { NavBar } from '../../components/NavBar';
-import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
+//import { AuthContext } from '../../context/AuthContext';
+//import { useContext } from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 const TicketSystem = () => {
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  //const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [results, setResults] = useState(); 
   const token = localStorage.getItem("token");
   useEffect(() => {
@@ -22,7 +22,7 @@ const TicketSystem = () => {
       }      
       })
       .catch((error) => console.log({error: error.message}));
-    },[]);
+    },[token]);
     
   return (
     <div id="wrapper">

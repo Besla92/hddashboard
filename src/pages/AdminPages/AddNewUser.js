@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const AddNewUser = () => {
 
-    const { isAuthenticated, setIsAuthenticated } =
+    const { setIsAuthenticated } =
     useContext(AuthContext);
     const token = localStorage.getItem("token");
     const handleSubmit = async (e) => {
