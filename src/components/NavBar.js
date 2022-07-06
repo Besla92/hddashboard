@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 
 export const NavBar = () => {
+    const { setIsAuthenticated } = useContext(AuthContext);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsAuthenticated(false);
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        return <Navigate to="./" />
+        };
+    
+
   return (
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -10,21 +23,7 @@ export const NavBar = () => {
                 <i className="fa fa-bars"></i>
             </button>
 
-            
-            <form
-                className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div className="input-group">
-                    <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..."
-                        aria-label="Search" aria-describedby="basic-addon2" />
-                    <div className="input-group-append">
-                        <button className="btn btn-primary" type="button">
-                            <i className="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-            
+        
             <ul className="navbar-nav ml-auto">
 
                 
@@ -163,6 +162,15 @@ export const NavBar = () => {
                         </Link>
                         <Link className="dropdown-item text-center small text-gray-500" to="#">Read More Messages</Link>
                     </div>
+                </li><li>
+                <form
+                className="">
+            
+                    <div className="input-group-append">
+                        <button className="btn btn-danger btn-small logout-button" type="button" onClick={handleSubmit} >LogOut
+                        </button>
+                    </div>
+            </form>
                 </li>
 
                 <div className="topbar-divider d-none d-sm-block"></div>
@@ -171,7 +179,7 @@ export const NavBar = () => {
                 <li className="nav-item dropdown no-arrow">
                     <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Mario & Karim Ticketsystem</span>
                         
                     </Link>
                     

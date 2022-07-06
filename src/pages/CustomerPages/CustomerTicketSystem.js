@@ -35,11 +35,11 @@ const CustomerTicketSystem = () => {
            <div className="accordion" id="accordionExample">
            { results ?  ( 
                 results.map((result) => (
-                  <div className="row ticketsystem-row" key={result.id}>
-             <div className="col-sm-10">
-                <div className="accordion-item" key={result.id}>
-                    <h2 className="accordion-header" id={`heading${result.id}`}>
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${result.id}`} aria-expanded="true" aria-controls={`collapse${result.id}`}>
+                  <div className="row ticketsystem-row" key={result.ticket_id}>
+             <div className="col-sm-12">
+                <div className="accordion-item" key={result.ticket_id}>
+                    <h2 className="accordion-header" id={`heading${result.ticket_id}`}>
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${result.ticket_id}`} aria-expanded="true" aria-controls={`collapse${result.ticket_id}`}>
                     <div className="row ticket-system-button">
                     
                       <div className="col-sm-8">{result.subject}</div>
@@ -48,7 +48,7 @@ const CustomerTicketSystem = () => {
                       </div>
                     </button>
                     </h2>
-                  <div id={`collapse${result.id}`} className="accordion-collapse collapse" aria-labelledby={`heading${result.id}`} data-bs-parent="#accordionExample">
+                  <div id={`collapse${result.ticket_id}`} className="accordion-collapse collapse" aria-labelledby={`heading${result.ticket_id}`} data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <div className="row">
                         <div className='col-sm-8'>
