@@ -8,13 +8,7 @@ import { Navigate } from "react-router-dom";
 
 const AllUsers = () => {
   const { isAuthenticated } = useContext(AuthContext);
-  const [email, setEmail] = useState('Initial value');
-
-  const handleChange = event => {
-    event.preventDefault();
-    setEmail(event.target.value);
-  };
-  console.log(email);
+  
   const [results, setResults] = useState(); 
   const token = localStorage.getItem("token");
   useEffect(() => {
