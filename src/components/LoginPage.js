@@ -1,17 +1,13 @@
 import axios from "axios";
-import {  useContext, useState } from "react";
+import {  useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const LoginPage = () => {
-  let userRole;
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    const { userData, setUserData } = useState(null);
-  const handleOnChange = async (e) => {
-    e.preventDefault();
-
-  }
-    let role
+    //const { userData } = useState(null);
+    //let userRole;
+    //let role;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = e.target;
@@ -29,19 +25,20 @@ const LoginPage = () => {
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
       //fetchData = res.data.user.rows[0];
-      setUserData(res.data.user.rows[0]);
-      userRole = userData.role;
-      console.log(userData);
+      //setUserData(res.data.user.rows[0]);
+      //userRole = userData.role;
+      //console.log(userData);
       localStorage.setItem("role", res.data.user.rows[0].role);
+      localStorage.setItem("user_id", res.data.user.rows[0].user_id);
+      console.log(res);
       
     } catch (error) {
       console.log({error: error.message});
     }
   };
 
-  role = localStorage.getItem("role");
+  const role = localStorage.getItem("role");
   if (isAuthenticated) {
-    console.log(`userRole: ${role}`);
     if(role === "user")    {
         return <Navigate to="../customer/dashboard" />;
     }

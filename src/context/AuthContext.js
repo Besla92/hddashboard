@@ -13,7 +13,6 @@ const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token);
     const checkIfTokenValid = async () => {
       if (token) {
         try {
@@ -30,10 +29,9 @@ const [isAuthenticated, setIsAuthenticated] = useState(null);
       } else {
         setIsAuthenticated(false);
       }
-      console.log(isAuthenticated);
     };
     checkIfTokenValid();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider

@@ -1,20 +1,18 @@
 import React from 'react';
-import { Sidebar } from './Sidebar';
-import { NavBar } from '../../components/NavBar';
-//import { AuthContext } from '../../context/AuthContext';
-//import { useContext } from 'react';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Sidebar from './SideBar';
+import { NavBar } from '../../components/NavBar';
 
-const TicketSystem = () => {
+const CustomerTicketSystem = () => {
   //const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [results, setResults] = useState(); 
   const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user_id");
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/admin/alltickets/subject/asc`,  { headers: { token: token } })
+      .get(`${process.env.REACT_APP_API_URL}/api/user/postlogin/${user}`,  { headers: { token: token } })
       .then((response) => {
-        console.log(response.data);
       setResults(response.data.rows);
       console.log(response);
       if (response.data === 0)  {
@@ -22,7 +20,7 @@ const TicketSystem = () => {
       }      
       })
       .catch((error) => console.log({error: error.message}));
-    },[token]);
+    },[token, user]);
     
   return (
     <div id="wrapper">
@@ -39,7 +37,7 @@ const TicketSystem = () => {
            { results ?  ( 
                 results.map((result) => (
                   <div className="row ticketsystem-row" key={result.ticket_id}>
-             <div className="col-sm-10">
+             <div className="col-sm-12">
                 <div className="accordion-item" key={result.ticket_id}>
                     <h2 className="accordion-header" id={`heading${result.ticket_id}`}>
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${result.ticket_id}`} aria-expanded="true" aria-controls={`collapse${result.ticket_id}`}>
@@ -51,7 +49,7 @@ const TicketSystem = () => {
                       </div>
                     </button>
                     </h2>
-                  <div id={`collapse${result.ticket_id}`} className="accordion-collapse collapse" aria-labelledby={`heading${result.id}`} data-bs-parent="#accordionExample">
+                  <div id={`collapse${result.ticket_id}`} className="accordion-collapse collapse" aria-labelledby={`heading${result.ticket_id}`} data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <div className="row">
                         <div className='col-sm-8'>
@@ -69,9 +67,7 @@ const TicketSystem = () => {
                   </div>
                 </div>
                 </div>
-                <div className="col-sm-2">
-                <button type="submit" className="btn btn-success btn-sm">Edit</button><button type="submit" className="btn btn-danger btn-sm">Delete</button>
-                </div>
+
                 </div>
                 )) 
                ) :  (
@@ -83,7 +79,7 @@ const TicketSystem = () => {
      </div>
 </div>
 </div>
-  )}
+  )
+}
 
-
-export default TicketSystem;
+export default CustomerTicketSystem

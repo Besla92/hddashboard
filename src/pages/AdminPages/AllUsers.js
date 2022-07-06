@@ -7,10 +7,9 @@ import axios from "axios";
 
 
 const AllUsers = () => {
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const [results, setResults] = useState(); 
   const token = localStorage.getItem("token");
-  console.log(isAuthenticated)
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/admin/users/u.id/desc`,  { headers: { token: token } })
@@ -21,7 +20,7 @@ const AllUsers = () => {
       }      
       })
       .catch((error) => console.log({error: error.message}));
-    },[]);
+    },[token]);
   
 
   return (
@@ -58,7 +57,7 @@ const AllUsers = () => {
                   <td>{result.email}</td>
                   <td>{result.company}</td>
                   <td>{result.role}</td>
-                  <td><button type="submit" className="btn btn-success">Edit</button><button type="submit" className="btn btn-danger">Delete</button></td>
+                  <td><button type="submit" className="btn btn-success btn-sm">Edit</button><button type="submit" className="btn btn-danger btn-sm">Delete</button></td>
                 </tr>
                 )) 
                ) :  (
