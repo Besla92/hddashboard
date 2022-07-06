@@ -66,6 +66,12 @@ height: 100%;
     margin-top: 15px;
 }
 
-.modal.show .modal-dialog  {
-    margin-top: 20%;
+
+
+.inputForm label  {
+    padding-top: 20px;
+}
+
+#user_id_for_pw {
+    display: none;
 }
