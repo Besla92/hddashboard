@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 //import { Navigate } from "react-router-dom";
 import '../sb-admin-2.css';
-import '../sb-admin-2.min.css';
 import { Sidebar } from "../pages/AdminPages/Sidebar";
 import { NavBar } from "./NavBar";
 import { Link } from "react-router-dom";

@@ -84,11 +84,9 @@ const AddNewUser = () => {
                                 <div className="col-sm-6 inputForm">
                                     <label>Company Name</label>
                                     <select className="form-control" id="company_name">
-                                        <option value="WBS GmbHb">Company 1</option>
-                                        <option value="test GmbH">Company 2</option>
-                                        <option value="Coca Cola">Company 3</option>
-                                        <option value="">Company 4</option>
-                                        <option value="">Company 5</option>
+                                        <option value="WBS GmbHb">WBS GmbH</option>
+                                        <option value="test GmbH">test GmbH</option>
+                                        <option value="Coca Cola">Coca Cola</option>
                                         </select>
                                 </div>
                             </div>

@@ -25,19 +25,25 @@ const Sidebar = () => {
             <i className="fas fa-fw fa-tachometer-alt"></i>
             <span>Products</span></Link>
     </li> 
+    <hr className="sidebar-divider" />
     <li className="nav-item has-submenu">
-        <Link className="nav-link collapsed" to="#" data-toggle="collapse" data-target="#collapseTwo"
+        <Link className="nav-link" to="#"  data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <span>Ticket system</span>
+            <h6>Ticket system</h6>
         </Link>
-        
-        <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div className="bg-white py-2 collapse-inner rounded">
-                <Link className="collapse-item" to="/customer/dashboard/addnewticket">Open ticket</Link>
-                <Link className="collapse-item" to="/customer/dashboard/tickets">Ticket list</Link>
-            </div>
-        </div>
+    </li>    
+    <li className="nav-item has-submenu">
+    <Link className="nav-link" to="/customer/dashboard/create-ticket">
+            <i className="fas fa-fw fa-tachometer-alt"></i>
+            <span>Create Ticket</span></Link>
     </li>
+    <li className="nav-item has-submenu">
+    <Link className="nav-link" to="/customer/dashboard/ticket-list">
+            <i className="fas fa-fw fa-tachometer-alt"></i>
+            <span>Ticket list</span></Link>
+    </li>
+       
+    
     <hr className="sidebar-divider" />
     
     <li className="nav-item active">

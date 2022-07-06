@@ -57,7 +57,7 @@ const AllUsers = () => {
                   <td>{result.email}</td>
                   <td>{result.company}</td>
                   <td>{result.role}</td>
-                  <td><button type="submit" className="btn btn-success">Edit</button><button type="submit" className="btn btn-danger">Delete</button></td>
+                  <td><button type="submit" className="btn btn-success btn-sm">Edit</button><button type="submit" className="btn btn-danger btn-sm">Delete</button></td>
                 </tr>
                 )) 
                ) :  (
