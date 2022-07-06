@@ -1,11 +1,11 @@
 import axios from "axios";
-import {  useContext, useState } from "react";
+import {  useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const LoginPage = () => {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    const { userData, setUserData } = useState(null);
+    //const { userData } = useState(null);
     //let userRole;
     //let role;
   const handleSubmit = async (e) => {
@@ -27,7 +27,7 @@ const LoginPage = () => {
       //fetchData = res.data.user.rows[0];
       //setUserData(res.data.user.rows[0]);
       //userRole = userData.role;
-      console.log(userData);
+      //console.log(userData);
       localStorage.setItem("role", res.data.user.rows[0].role);
       
     } catch (error) {
