@@ -5,6 +5,7 @@ import { NavBar } from '../../components/NavBar';
 //import { useContext } from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 
 const TicketSystem = () => {
   //const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
@@ -19,11 +20,35 @@ const TicketSystem = () => {
       console.log(response);
       if (response.data === 0)  {
         console.log("no results");
+        
       }      
       })
       .catch((error) => console.log({error: error.message}));
     },[token]);
-    
+
+    //HandleSubmit für den Status Update
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const { status, current_ticket_id } = e.target;
+      
+       const new_ticket_status_id = status.value;
+       const ticket_id = current_ticket_id.value;
+       console.log(new_ticket_status_id, ticket_id);
+       if(new_ticket_status_id && ticket_id) {
+       try {
+         await axios.put(
+          `${process.env.REACT_APP_API_URL}/api/admin/tickets/${ticket_id}`,
+          {"new_ticket_status_id": new_ticket_status_id}, { headers: { token: token } }
+        );
+        
+        return <Navigate to="./admin/dashboard/ticketsystem" />
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }
+//HandleSubmit für den Status Update
+
   return (
     <div id="wrapper">
          <Sidebar />
@@ -45,7 +70,7 @@ const TicketSystem = () => {
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${result.ticket_id}`} aria-expanded="true" aria-controls={`collapse${result.ticket_id}`}>
                     <div className="row ticket-system-button">
                     
-                      <div className="col-sm-8">{result.subject}</div>
+                      <div className="col-sm-8">{"#"+result.ticket_id + " " + result.subject}</div>
                       <div className="col-sm-4"><span className={`${result.status}`}>{result.status}</span></div>
 
                       </div>
@@ -70,7 +95,39 @@ const TicketSystem = () => {
                 </div>
                 </div>
                 <div className="col-sm-2">
-                <button type="submit" className="btn btn-success btn-sm">Edit</button><button type="submit" className="btn btn-danger btn-sm">Delete</button>
+                {"<--! Hier fängt der Modal an"}
+                <button type="button" className="btn btn-success btn-sm" data-toggle="modal" data-target={`#myModal${result.ticket_id}`}>Edit</button>
+                  <div className="modal" id={`myModal${result.ticket_id}`}>
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h4 className="modal-title">Update ticket #{result.ticket_id}</h4>
+                            <button type="button" className="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <form onSubmit={handleSubmit}>
+
+                                <div className="col-sm-6 inputForm">
+                                <label>Ticket ID</label>
+                                <input type="text" id="current_ticket_id" className="form-control" value={result.ticket_id} readOnly/>
+                                    <label>Ticket Status</label>
+                                        <select className="form-control" id="status">
+                                        <option value="0">Wählen</option>
+                                        <option value="1">Open</option>
+                                        <option value="2">Pending</option>
+                                        <option value="3">Closed</option>
+                                        </select>
+                                </div>
+                            
+                              <div className="modal-footer">
+                                  <button type="submit" className="btn btn-success">Update</button>
+                                  <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    {"<--! Hier hört der Modal auf"}
+                <button type="submit" className="btn btn-danger btn-sm">Delete</button>
                 </div>
                 </div>
                 )) 

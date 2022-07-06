@@ -65,3 +65,7 @@ height: 100%;
 .logout-button  {
     margin-top: 15px;
 }
+
+.modal.show .modal-dialog  {
+    margin-top: 20%;
+}
